@@ -1,5 +1,6 @@
 package com.charan.student_management_system.controller;
 
+import com.charan.student_management_system.entity.Student;
 import com.charan.student_management_system.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +14,23 @@ public class StudentController {
         super();
         this.studentService = studentService;
     }
-//    handler method to handle getAllStudents method and return model and view
+    //    handler method to handle getAllStudents method and return model and view
     @GetMapping("/students")
     public String listStudents(Model model){
         model.addAttribute("students",studentService.getAllStudents());
         return "students";
 
+    }
+    // method to add a new student
+    @GetMapping("/students/new")
+    public String createStudentForm(Model model){
+        Student student= new Student();
+        model.addAttribute("student",student);
+
+        return "create_student";
+
+    }
+    public String saveStudent(){
+        return null;
     }
 }
